@@ -1,0 +1,32 @@
+# ───────────────────────────────────────────────────────────────
+#  AetherDynamicSpawners
+#
+#  Spawner delays scale with live tick headroom. While the server is
+#  healthy, spawners run at vanilla rates; as MSPT rises past the
+#  target, delays stretch up to max-multiplier.
+# ───────────────────────────────────────────────────────────────
+
+throttle:
+  # MSPT at which throttling begins. 50ms is the hard tick budget;
+  # 35ms leaves room for spikes before players notice.
+  target-mspt: 35.0
+
+  # Hardest throttle applied. x4 turns a 10s spawner cycle into 40s.
+  max-multiplier: 4.0
+
+  # Vanilla spawner defaults, used as the x1.0 baseline.
+  base-min-spawn-delay: 200
+  base-max-spawn-delay: 800
+
+  # How often to re-evaluate. 100 ticks = 5s.
+  evaluate-interval-ticks: 100
+
+  # Rolling sample count for MSPT smoothing, in seconds.
+  # Too small and the throttle oscillates on transient spikes.
+  sample-window: 20
+
+  # Work ceiling per pass. Prevents the throttle scan from becoming
+  # the lag source it exists to prevent.
+  max-spawners-per-pass: 400
+
+  log-adjustments: true
