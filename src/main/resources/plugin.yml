@@ -1,0 +1,18 @@
+name: AetherDynamicSpawners
+version: '${project.version}'
+main: com.fivemcodehub.aether.AetherPlugin
+api-version: '1.20'
+authors: [vndel]
+description: Throttles spawner tick rate against live MSPT and TPS headroom
+website: https://team.fivemcodehub.com
+
+commands:
+  aether:
+    description: Spawner throttling state
+    usage: /aether <status|reload>
+    permission: aether.admin
+
+permissions:
+  aether.admin:
+    description: Administrative access
+    default: op
